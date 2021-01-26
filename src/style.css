@@ -5,12 +5,33 @@
     font-style: normal;
   }
   
+  :root {
+    --bg-color: #ffffff;
+    --color: #000000;
+  }
+
+  /* @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: #000000;
+      --color: #ffffff;
+    }
+  } */
+
+  html.darkmode:root {
+    --bg-color: #000;
+    --color: #fff;
+  }
+  
   html {
     box-sizing: border-box;
+    background-color: var(--bg-color);
+    color: var(--color);
   }
   
   body * {
     font-family: Goyang;
+    background-color: var(--bg-color);
+    color: var(--color);
   }
   
   *,

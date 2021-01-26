@@ -7,6 +7,11 @@ class App {
   constructor($target) {
     this.$target = $target;
 
+    const darkmodeBtn = document.createElement('button');
+    darkmodeBtn.className = "darkmodeBtn";
+    darkmodeBtn.innerText = "Toogle Theme";
+    $target.appendChild(darkmodeBtn);
+
     this.searchInput = new SearchInput({
       $target,
       onSearch: keyword => {
