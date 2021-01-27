@@ -32,6 +32,7 @@ class SearchResult {
   
       this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
         $item.addEventListener("click", () => {
+          console.log(this.data);
           this.onClick(this.data[index]);
         });
       });
