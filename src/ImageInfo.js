@@ -19,7 +19,6 @@ class ImageInfo {
 
     onClose(){
       console.log("click");
-      // this.data.visible = !this.data.visible;
       this.data = null;
       this.$imageInfo.innerHTML = '';
       this.$imageInfo.style.display = "none";
@@ -27,8 +26,11 @@ class ImageInfo {
   
     render() {
       if (this.data.visible) {
-        const { name, url, temperament, origin } = this.data.image;
-        // console.log(this.data.breeds[0]);
+        console.log(this.data);
+        let { name, url, temp, origin } = this.data.image;
+        if(name===undefined)  name = "정보없음";
+        if(temp===undefined)  temp = "정보없음";
+        if(origin===undefined)  origin = "정보없음";
 
         const overlay = document.createElement('div');
         overlay.className = 'overlay';
@@ -60,10 +62,18 @@ class ImageInfo {
 
         const catTemp = document.createElement('p');
         catTemp.className = 'capTemp';
-        catTemp.innerText = `성격 : ${temperament}`;
+        catTemp.innerText = `성격 : ${temp}`;
 
         closeBtn.addEventListener('click', ()=>{this.onClose();});
         overlay.addEventListener('click', ()=>{this.onClose();});
+
+        const body = document.querySelector('body');
+        body.addEventListener('keydown', (e)=>{
+          if(e.key==="Escape"){
+            this.onClose();
+          }  
+        });
+        
 
         modalHeader.appendChild(modalTitle);
         modalHeader.appendChild(closeBtn);
@@ -78,26 +88,11 @@ class ImageInfo {
         this.$imageInfo.appendChild(overlay);
         this.$imageInfo.appendChild(contentWrapper);
 
-        // this.$imageInfo.innerHTML = `
-        //   <article class="content-wrapper">
-        //     <div class="title">
-        //       <span>${name}</span>
-        //       <div class="close">x</div>
-        //     </div>
-        //     <img src="${url}" alt="${name}"/>        
-        //     <div class="description">
-        //       <div>성격: ${temperament}</div>
-        //       <div>태생: ${origin}</div>
-        //     </div>
-        //   </article>`;
         this.$imageInfo.style.display = "block";
       } else {
         this.$imageInfo.style.display = "none";
       }
       const closeBtn = document.querySelector('.close');
-      console.log(closeBtn);
-      // closeBtn.addEventListener('click', onClose());
-      console.log(closeBtn);
     }
   }
   

@@ -20,6 +20,7 @@ class SearchResult {
     }
   
     render() {
+      console.log(this.data);
       this.$searchResult.innerHTML = this.data
         .map(
           cat => `
