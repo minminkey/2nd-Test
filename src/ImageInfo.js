@@ -18,7 +18,6 @@ class ImageInfo {
     }
 
     onClose(){
-      console.log("click");
       this.$imageInfo.classList.add('fadeOut');
       setTimeout(()=>{
         this.$imageInfo.style.display = 'none';

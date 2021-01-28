@@ -17,6 +17,11 @@ class SearchResult {
       this.data = nextData;
       this.render();
     }
+
+    findCatById(id){
+      const result = this.data.find(cat => cat.id === id);
+      return result;
+    }
   
     render() {
 
@@ -26,18 +31,21 @@ class SearchResult {
         this.$searchResult.innerHTML = this.data
           .map(
             cat => `
-              <article class="item">
-                <img src=${cat.url} alt=${cat.name} />
+              <article class="item" data-id=${cat.id}>
+                <img src=${cat.url} alt=${cat.name} title=${cat.name} />
               </article>
             `
           )
           .join("");
-    
-        this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
-          $item.addEventListener("click", () => {
-            console.log(this.data);
-            this.onClick(this.data[index]);
-          });
+        this.$searchResult.addEventListener('click', e=>{
+          const path = e.path;
+          const card = path.find(comp=>comp.className == 'item');
+          console.log(card);
+          if(card){
+            const id = card.dataset.id;
+            const catInfo = this.findCatById(id);
+            this.onClick(catInfo);
+          }
         });
       } else {
         const noData = document.createElement('h1');

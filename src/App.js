@@ -23,6 +23,14 @@ class App {
         result.innerHTML = '';
         await api.fetchCats(keyword).then(({ data }) => this.setState(data));
         this.loading.toggleLoading();
+      },
+
+      onRandom: async () => {
+        this.loading.toggleLoading();
+        const result = document.querySelector('.SearchResult');
+        result.innerHTML = '';
+        await api.fetchRandomCats().then(({ data }) => this.setState(data));
+        this.loading.toggleLoading();
       }
     });
     

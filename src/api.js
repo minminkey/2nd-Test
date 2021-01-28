@@ -24,8 +24,16 @@ const api = {
     const response = await request(`${API_ENDPOINT}/api/cats/search?q=${keyword}`);
     response.data.map(async data => {
       const after =  await request(`${API_ENDPOINT}/api/cats/${data.id}`)
-      // const after = await before.json();
-      // console.log(after)
+      data.origin = after.data.origin;
+      data.temp = after.data.temperament;
+    });
+    return response;
+  },
+
+  fetchRandomCats: async keyword => {
+    const response = await request(`${API_ENDPOINT}/api/cats/random50`);
+    response.data.map(async data => {
+      const after =  await request(`${API_ENDPOINT}/api/cats/${data.id}`)
       data.origin = after.data.origin;
       data.temp = after.data.temperament;
     });
