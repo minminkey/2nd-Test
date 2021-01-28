@@ -19,12 +19,12 @@ class ImageInfo {
 
     onClose(){
       console.log("click");
-      this.$imageInfo.classList.add('hidden');
+      this.$imageInfo.classList.add('fadeOut');
       setTimeout(()=>{
         this.$imageInfo.style.display = 'none';
         this.data = null;
         this.$imageInfo.innerHTML = '';
-        this.$imageInfo.classList.remove('hidden');
+        this.$imageInfo.classList.remove('fadeOut');
       }, 450);
     }
   

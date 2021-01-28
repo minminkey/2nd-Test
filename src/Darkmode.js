@@ -30,7 +30,6 @@ function userTheme(toggle = false) {
    });
   }
   function init(){
-    console.log(darkmodeBtn);
     userTheme(false);
     darkmodeBtn.addEventListener('click', function (){userTheme(true)});
   }

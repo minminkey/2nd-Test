@@ -142,6 +142,15 @@
   }
   
   .hidden {
+    visibility: hidden;
+  }
+
+  .loading-text {
+    position: absoulte;
+    text-align: center;
+  }
+
+  .fadeOut {
     animation: fadeOut 0.5s;
   }
 

@@ -1,3 +1,4 @@
+
 console.log("app is running!");
 
 class App {
@@ -7,6 +8,8 @@ class App {
   constructor($target) {
     this.$target = $target;
 
+    
+
     const darkmodeBtn = document.createElement('button');
     darkmodeBtn.className = "darkmodeBtn";
     darkmodeBtn.innerText = "Toogle Theme";
@@ -14,11 +17,13 @@ class App {
 
     this.searchInput = new SearchInput({
       $target,
-      onSearch: keyword => {
-        api.fetchCats(keyword).then(({ data }) => this.setState(data));
+      onSearch: async keyword => {
+        this.loading.toggleLoading();
+        await api.fetchCats(keyword).then(({ data }) => this.setState(data));
+        this.loading.toggleLoading();
       }
     });
-
+    
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
@@ -38,11 +43,20 @@ class App {
         image: null
       }
     });
+    console.log("Start");
+    this.loading = new Loading({
+      $target
+    });
+    console.log(this.loading);
   }
+  
 
   setState(nextData) {
     console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
   }
+
+  
+
 }
