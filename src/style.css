@@ -10,12 +10,23 @@
     --color: #000000;
   }
 
-  /* @media (prefers-color-scheme: dark) {
-    :root {
-      --bg-color: #000000;
-      --color: #ffffff;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
     }
-  } */
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 
   html.darkmode:root {
     --bg-color: #000;
@@ -124,9 +135,14 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    animation: fadeIn 0.5s;
     background-color: #fff;
     border: 1px solid #eee;
     border-radius: 5px;
+  }
+  
+  .hidden {
+    animation: fadeOut 0.5s;
   }
 
   @media screen and (max-width:768px) {

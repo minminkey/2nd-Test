@@ -19,9 +19,13 @@ class ImageInfo {
 
     onClose(){
       console.log("click");
-      this.data = null;
-      this.$imageInfo.innerHTML = '';
-      this.$imageInfo.style.display = "none";
+      this.$imageInfo.classList.add('hidden');
+      setTimeout(()=>{
+        this.$imageInfo.style.display = 'none';
+        this.data = null;
+        this.$imageInfo.innerHTML = '';
+        this.$imageInfo.classList.remove('hidden');
+      }, 450);
     }
   
     render() {
