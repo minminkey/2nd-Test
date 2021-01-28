@@ -150,6 +150,10 @@
     text-align: center;
   }
 
+  .no-data {
+    position: absoulte;
+    text-align: center;
+  }
   .fadeOut {
     animation: fadeOut 0.5s;
   }

@@ -19,6 +19,8 @@ class App {
       $target,
       onSearch: async keyword => {
         this.loading.toggleLoading();
+        const result = document.querySelector('.SearchResult');
+        result.innerHTML = '';
         await api.fetchCats(keyword).then(({ data }) => this.setState(data));
         this.loading.toggleLoading();
       }
@@ -28,7 +30,7 @@ class App {
       $target,
       initialData: this.data,
       onClick: image => {
-        console.log(this.data);
+      console.log(this.data.length);
         this.imageInfo.setState({
           visible: true,
           image
@@ -43,11 +45,9 @@ class App {
         image: null
       }
     });
-    console.log("Start");
     this.loading = new Loading({
       $target
     });
-    console.log(this.loading);
   }
   
 

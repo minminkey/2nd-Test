@@ -7,11 +7,10 @@ class SearchResult {
       this.$searchResult = document.createElement("section");
       this.$searchResult.className = "SearchResult";
       $target.appendChild(this.$searchResult);
-  
       this.data = initialData;
       this.onClick = onClick;
   
-      this.render();
+      // this.render();
     }
   
     setState(nextData) {
@@ -20,23 +19,32 @@ class SearchResult {
     }
   
     render() {
-      console.log(this.data);
-      this.$searchResult.innerHTML = this.data
-        .map(
-          cat => `
-            <article class="item">
-              <img src=${cat.url} alt=${cat.name} />
-            </article>
-          `
-        )
-        .join("");
-  
-      this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
-        $item.addEventListener("click", () => {
-          console.log(this.data);
-          this.onClick(this.data[index]);
+
+      this.$searchResult.innerText = '';
+
+      if(this.data.length>0){
+        this.$searchResult.innerHTML = this.data
+          .map(
+            cat => `
+              <article class="item">
+                <img src=${cat.url} alt=${cat.name} />
+              </article>
+            `
+          )
+          .join("");
+    
+        this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
+          $item.addEventListener("click", () => {
+            console.log(this.data);
+            this.onClick(this.data[index]);
+          });
         });
-      });
+      } else {
+        const noData = document.createElement('h1');
+        noData.className = 'no-data';
+        noData.innerText = '검색 결과 없음';
+        this.$searchResult.appendChild(noData);
+      }
     }
   }
   

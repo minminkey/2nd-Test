@@ -25,7 +25,7 @@ class ImageInfo {
         this.data = null;
         this.$imageInfo.innerHTML = '';
         this.$imageInfo.classList.remove('fadeOut');
-      }, 450);
+      }, 250);
     }
   
     render() {

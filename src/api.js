@@ -23,8 +23,9 @@ const api = {
   fetchCats: async keyword => {
     const response = await request(`${API_ENDPOINT}/api/cats/search?q=${keyword}`);
     response.data.map(async data => {
-      const before =  await fetch(`${API_ENDPOINT}/api/cats/${data.id}`)
-      const after = await before.json();
+      const after =  await request(`${API_ENDPOINT}/api/cats/${data.id}`)
+      // const after = await before.json();
+      // console.log(after)
       data.origin = after.data.origin;
       data.temp = after.data.temperament;
     });
