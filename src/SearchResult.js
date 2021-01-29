@@ -10,12 +10,14 @@ class SearchResult {
       this.data = initialData;
       this.onClick = onClick;
   
+      // lazyLoad();
       // this.render();
     }
   
     setState(nextData) {
       this.data = nextData;
       this.render();
+      lazyLoad();
     }
 
     findCatById(id){
@@ -32,7 +34,7 @@ class SearchResult {
           .map(
             cat => `
               <article class="item" data-id=${cat.id}>
-                <img src=${cat.url} alt=${cat.name} title=${cat.name} />
+                <img class=lazy data-src=${cat.url} alt=${cat.name} title=${cat.name} />
               </article>
             `
           )
@@ -47,6 +49,7 @@ class SearchResult {
             this.onClick(catInfo);
           }
         });
+        // lazyLoad();
       } else {
         const noData = document.createElement('h1');
         noData.className = 'no-data';
