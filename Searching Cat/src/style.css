@@ -109,6 +109,18 @@
     padding: 10px 15px;
     margin-right: 10px;
   }
+  .recent-keywords {
+      margin-top: 10px;
+  }
+
+  .keyword {
+      background-color: rgb(255, 127, 0);
+      color: white;
+      border-radius: 11px;
+      
+      padding: 5px;
+      margin-right: 8px;
+  }
 
   .random-btn {
     /* float: left; */

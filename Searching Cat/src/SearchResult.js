@@ -1,3 +1,5 @@
+// import {lazyLoad} from './lazyLoad.js';
+
 class SearchResult {
     $searchResult = null;
     data = null;
@@ -10,13 +12,15 @@ class SearchResult {
       this.data = initialData;
       this.onClick = onClick;
   
-      // lazyLoad();
-      // this.render();
+      this.render();
+      console.log(this.$searchResult);
+      lazyLoad();
     }
   
     setState(nextData) {
       this.data = nextData;
       this.render();
+      console.log(this.$searchResult);
       lazyLoad();
     }
 
@@ -28,17 +32,20 @@ class SearchResult {
     render() {
 
       this.$searchResult.innerText = '';
-
+      if(!this.data)  return;
       if(this.data.length>0){
-        this.$searchResult.innerHTML = this.data
-          .map(
-            cat => `
-              <article class="item" data-id=${cat.id}>
-                <img class=lazy data-src=${cat.url} alt=${cat.name} title=${cat.name} />
-              </article>
-            `
-          )
-          .join("");
+        this.data.map(cat=>{
+          const article = document.createElement('article');
+          article.className = "item";
+          article.dataset.id = cat.id;
+          const img = document.createElement('img');
+          img.className = "lazy";
+          img.dataset.src = cat.url;
+          img.alt = cat.name;
+          img.title = cat.name;
+          article.appendChild(img);
+          this.$searchResult.appendChild(article);
+        });
         this.$searchResult.addEventListener('click', e=>{
           const path = e.path;
           const card = path.find(comp=>comp.className == 'item');

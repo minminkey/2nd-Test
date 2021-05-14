@@ -8,7 +8,9 @@ class App {
   constructor($target) {
     this.$target = $target;
 
-    
+    const keywords = getItem('keywords');
+    this.data = getItem('data');
+    // console.log(this.data);
 
     const darkmodeBtn = document.createElement('button');
     darkmodeBtn.className = "darkmodeBtn";
@@ -17,11 +19,16 @@ class App {
 
     this.searchInput = new SearchInput({
       $target,
+      keywords,
       onSearch: async keyword => {
         this.loading.toggleLoading();
+        console.log("Delete");
         const result = document.querySelector('.SearchResult');
         result.innerHTML = '';
-        await api.fetchCats(keyword).then(({ data }) => this.setState(data));
+        await api.fetchCats(keyword).then(({ data }) => {
+          this.setState(data)
+          setItem('data', data);
+        });
         this.loading.toggleLoading();
       },
 
@@ -29,7 +36,10 @@ class App {
         this.loading.toggleLoading();
         const result = document.querySelector('.SearchResult');
         result.innerHTML = '';
-        await api.fetchRandomCats().then(({ data }) => this.setState(data));
+        await api.fetchRandomCats().then(({ data }) => {
+          this.setState(data)
+          setItem('data', data);
+        });
         this.loading.toggleLoading();
       }
     });
@@ -38,7 +48,7 @@ class App {
       $target,
       initialData: this.data,
       onClick: image => {
-      console.log(this.data.length);
+        
         this.imageInfo.setState({
           visible: true,
           image

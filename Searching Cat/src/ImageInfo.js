@@ -30,6 +30,8 @@ class ImageInfo {
     render() {
       if (this.data.visible) {
         console.log(this.data);
+        const info = document.querySelector('.ImageInfo');
+        info.innerHTML = '';
         let { name, url, temp, origin } = this.data.image;
         if(name===undefined)  name = "정보없음";
         if(temp===undefined)  temp = "정보없음";
