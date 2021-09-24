@@ -1,7 +1,7 @@
 import { getStart, getLocations, getTrucks, putSimulate, getScore } from "./RESTApi.js";
 import { setTruck, init, setMap } from "./Setting.js";
 
-const auth_key = await getStart();
+const auth_key = await getStart(1);
 
 let map = [];
 let truck = [];
@@ -20,7 +20,7 @@ for(let i=0; i<5; i++){
 }
 
 
-init(map, truck, location);
+init(map, truck, 5, 5);
 
 let truckInfo = await getTrucks(auth_key);
 setTruck(truck, truckInfo);

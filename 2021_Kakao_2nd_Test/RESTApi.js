@@ -3,12 +3,12 @@ import axios from "axios";
 const X_AUTH_TOKEN = 'aa2e9e999c5e41c160919cb26571faf1';
 const BASE_URL = 'https://kox947ka1a.execute-api.ap-northeast-2.amazonaws.com/prod/users';
 
-export const getStart = async () => {
+export const getStart = async (n) => {
     const res = await axios({
         method: 'POST',
         url: BASE_URL + '/start',
         data: {
-            problem: 1,
+            problem: n,
         },
         headers: {'X-Auth-Token':X_AUTH_TOKEN, 'Content-Type': 'application/json'},
     });

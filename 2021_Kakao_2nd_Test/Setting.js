@@ -1,7 +1,7 @@
 let location = [];
 
-export const init = (map, truck) => {
-    for(let i=0; i<5; i++){
+export const init = (map, truck, n, m) => {
+    for(let i=0; i<n; i++){
         let Truck = {
             r: 0,
             c: 0,
@@ -12,11 +12,11 @@ export const init = (map, truck) => {
         };
         truck.push(Truck);
     }
-    for(let i=0; i<5; i++){
-        map.push(new Array(5).fill(0));
+    for(let i=0; i<m; i++){
+        map.push(new Array(m).fill(0));
     }
-    for(let j=0; j<5; j++){
-        for(let i=4; i>=0; i--){
+    for(let j=0; j<m; j++){
+        for(let i=m-1; i>=0; i--){
             let info = {r:i, c:j};
             location.push(info);
         }
