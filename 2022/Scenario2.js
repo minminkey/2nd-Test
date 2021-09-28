@@ -41,7 +41,7 @@ while(1){
         if(user[win].grade-user[lose].grade<750){
             if(info.taken<=10){
                 user[win].grade -= plus*2;
-                user[lose].grade += plus*2;
+                user[lose].grade += plus*3;
             }
         }
 
